@@ -3,16 +3,26 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <Authors>conficient, PhotoAtomic</Authors>
+    <Authors>conficient, PhotoAtomic, Drake53</Authors>
     <Company>conficient</Company>
     <Description>A HTML templating engine using Razor Components (.razor) files instead of .cshtml</Description>
-    <PackageProjectUrl>https://github.com/conficient/BlazorTemplater</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/conficient/BlazorTemplater</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/PhotoAtomic/BlazorTemplater</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PhotoAtomic/BlazorTemplater</RepositoryUrl>
     <PackageTags>Blazor RazorComponents HTML Email Templating</PackageTags>
-    <Version>1.6.0</Version>
-    <PackageReleaseNotes>Added ability to await the completion of the async lifecycle before generating the output html so to include all possible updates from the async methods</PackageReleaseNotes>
+    <Version>1.7.0</Version>
+    <PackageReleaseNotes>Incorporated better async generation from Drake53 code, marked old async render method obsolete</PackageReleaseNotes>
     <LangVersion>Latest</LangVersion>
+    <PackageId>PhotoAtomic.$(AssemblyName)</PackageId>
+    <Product>PhotoAtomic.$(AssemblyName)</Product>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.14" Condition="'$(TargetFramework)' == 'netstandard2.0'" />

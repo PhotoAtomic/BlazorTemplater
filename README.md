@@ -207,4 +207,5 @@ This was never developed into a functioning product or library. For unit testing
 | v1.4.0   | Added support for Layouts |
 | v1.5.0   | Added support already existing IServiceProvider |
 | v1.6.0   | Added support AsyncRender |
+| v1.7.0   | Added better support AsyncRender using Drake53 code, marked old AsyncRender introduce in 1.6.0 Obsolete |
 

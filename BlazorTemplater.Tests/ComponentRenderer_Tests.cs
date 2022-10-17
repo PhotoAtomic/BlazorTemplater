@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace BlazorTemplater.Tests
@@ -221,11 +222,11 @@ namespace BlazorTemplater.Tests
                 .Set(c => c.Model, model)
                 .Render();
 
-            // trim leading space and trailing CRLF from output
-            var actual = html.Trim();
+            
+            Console.WriteLine(html);
 
-            Console.WriteLine(actual);
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(String.Compare(expected, html, CultureInfo.CurrentCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreSymbols) == 0);
+
         }
 
         #endregion

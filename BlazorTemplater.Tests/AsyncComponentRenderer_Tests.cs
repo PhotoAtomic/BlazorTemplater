@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -36,7 +37,7 @@ namespace BlazorTemplater.Tests
         public async Task Simple_Test()
         {
             const string expected = @"<b>Jan 1st is 2021-01-01</b>";
-            var actual = await CreateRenderer<Simple>()
+            var actual = await CreateRenderer<Simple>()                           
                 .RenderAsync(new Dictionary<string, object?>());
 
             Console.WriteLine(actual);
@@ -221,7 +222,7 @@ namespace BlazorTemplater.Tests
             // the spaces before the <p> come from the Parameters.razor component
             // on Windows the string contains \r\n and on unix it's just \n
             string expected = $"<b>Jan 1st is 2021-01-01</b>{Environment.NewLine}    <p>Dan Roth is cool!</p>";
-
+            
             var model = new TestModel()
             {
                 Name = "Dan Roth",
@@ -236,11 +237,11 @@ namespace BlazorTemplater.Tests
             var html = await CreateRenderer<NestedComponents>()
                 .RenderAsync(parameters);
 
-            // trim leading space and trailing CRLF from output
-            var actual = html.Trim();
+            
+            Console.WriteLine(html);
 
-            Console.WriteLine(actual);
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(String.Compare(expected, html, CultureInfo.CurrentCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreSymbols) == 0) ;
+            
         }
 
         #endregion
@@ -340,7 +341,7 @@ namespace BlazorTemplater.Tests
 
             StringAssert.Contains(html, expectedTemplate, "Expected template was not found");
             StringAssert.Contains(html, expectedContent, "Expected content was not found");
-        }
+        }       
 
 
         /// <summary>
@@ -438,6 +439,9 @@ namespace BlazorTemplater.Tests
             var factory = new AsyncComponentRendererFactory<TComponent, TLayout>(serviceProvider, loggerFactory);
             return factory.CreateRenderer();
         }
+
+
+        
 
     }
 

@@ -124,6 +124,7 @@ namespace BlazorTemplater
         /// <remarks>
         /// Updated version renders inside a LayoutView so that layouts are applied
         /// </remarks>
+        [Obsolete("Use AsyncComponentRenderer instead")]
         public Task<string> RenderComponentAsync<TComponent>(IDictionary<string, object> parameters = null) where TComponent : IComponent
         {
             var componentType = typeof(TComponent);
